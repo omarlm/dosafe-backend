@@ -7,14 +7,8 @@ const routes = require('./routes')
 const whitelist = ['https://dazzling-figolla-4b1e5d.netlify.app/']
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error('No permitido por CORS'))
-        }
-    },
-}
+    origin: 'https://dazzling-figolla-4b1e5d.netlify.app' // Reemplaza con el dominio de tu frontend
+};
 
 app.use(cors(corsOptions));
 app.use(express.json())
