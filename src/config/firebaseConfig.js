@@ -1,10 +1,16 @@
-const admin = require('firebase-admin')
-const serviceAccount = require('../../secrets/dosafe-6e5d7-firebase-adminsdk-x18ke-7961c611c2.json')
+const admin = require('firebase-admin');
+require('dotenv').config();
+
+const base64Config = process.env.FIREBASE_CONFIG;
+
+const decodedConfig = JSON.parse(Buffer.from(base64Config, 'base64').toString('utf-8'));
+
+const serviceAccount = decodedConfig;
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
-})
+});
 
-const db = admin.firestore()
+const db = admin.firestore();
 
-module.exports = db
+module.exports = db;
